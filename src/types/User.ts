@@ -4,4 +4,10 @@ export type User = {
   vocation: string;
   level: number;
   password: string;
+  productIds?: number[]
+};
+
+export type UserAndProducts = {
+  username: string,
+  productIds: number[],
 };
