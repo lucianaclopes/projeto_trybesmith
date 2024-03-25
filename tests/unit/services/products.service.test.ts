@@ -6,7 +6,7 @@ import productsMock from '../../mocks/products.mock';
 
 describe('ProductsService', function () {
   beforeEach(function () { sinon.restore(); });
-  it('Deve ser possível cadastrar um produto com sucess', async function () {
+  it('Deve ser possível cadastrar um produto com sucesso', async function () {
     // Arrange
     const { validProductToAdd, productCreated } = productsMock;
     const mockCreateReturn = ProductModel.build(validProductToAdd);
@@ -18,6 +18,18 @@ describe('ProductsService', function () {
     // Assert
     expect(serviceResponse.status).to.equal('SUCCESS');
     expect(serviceResponse.data).to.deep.equal(productCreated);
+  });
+it('Deve ser possível listar os produtos com sucesso', async function () {
+    // Arrange
+    const { productsList } = productsMock;
+    sinon.stub(ProductModel, 'findAll').resolves(productsList as any);
+
+    // Act
+    const serviceResponse = await productsService.listProducts();
+
+    // Assert
+    expect(serviceResponse.status).to.equal('SUCCESSFUL');
+    expect(serviceResponse.data).to.deep.equal(productsList);
   });
 
 });

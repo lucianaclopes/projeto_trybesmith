@@ -4,7 +4,7 @@ export type ServiceResponseError = {
   data: { message: string };
 };
 export type ServiceResponseSuccess<T> = {
-  status: 'SUCCESS';
+  status: 'SUCCESS' | 'SUCCESSFUL';
   data: T;
 };
 
